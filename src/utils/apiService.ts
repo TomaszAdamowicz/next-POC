@@ -38,7 +38,7 @@ export const getUsers = async () => {
 
 		return {
 			props: {
-				usersData: data,
+				usersData: data as User[],
 			}
 		}
 	} catch(e) {
@@ -48,4 +48,18 @@ export const getUsers = async () => {
 			notFound: true,
 		};
 	}
+};
+
+export const getRecentUser = async () => {
+	const {props} = await getUsers();
+
+	if(props?.usersData && props.usersData.length > 0) {
+		return {
+			props: {
+				recentUser: props.usersData.slice(-1)[0] as User,
+			}
+		}
+	}
+
+	return false;
 }
