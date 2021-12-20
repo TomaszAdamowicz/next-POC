@@ -1,6 +1,10 @@
+/**
+ * External dependencies
+ */
+import type {FC} from 'react';
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: FC<AppProps> =  ({ Component, pageProps }) => {
   return <Component {...pageProps} />
 }
 
