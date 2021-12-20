@@ -1,6 +1,12 @@
+export enum UserColors {
+	Red = 'red',
+	Blue = 'blue',
+	Green = 'green',
+}
+
 export interface User {
 	id: number,
 	name: string,
-	favoriteColor: 'red' | 'blue' | 'green',
+	favoriteColor: UserColors,
 	createdAt: string,
 }

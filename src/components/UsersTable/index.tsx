@@ -12,7 +12,7 @@ import styles from './usersTable.module.scss';
 export const UsersTable: FC<{usersData: User[]}> = ({usersData}) => {
 	const tableData = usersData.map( user => (
 		<tr
-			key={user.name}
+			key={user.id}
 		>
 			<td className={styles.data}>{user.name}</td>
 			<td className={styles.data}>{user.favoriteColor}</td>

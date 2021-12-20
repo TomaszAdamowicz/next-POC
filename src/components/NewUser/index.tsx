@@ -6,27 +6,22 @@ import React, { FC, useRef } from 'react';
 /**
  * Internal dependencies
  */
-import type { User } from '../../types';
+import { UserColors } from '../../types';
 import styles from './newUser.module.scss';
+import { saveUser } from '../../utils/apiService';
 
 export const NewUser: FC = () => {
 	const name = useRef<HTMLInputElement>(null);
 	const color = useRef<HTMLSelectElement>(null);
 
-	const colorOptions = [
-		'red',
-		'blue',
-		'green'
-	];
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-	const nameValue = name.current ? name.current.value : '';
-	const colorValue = color.current  ? color.current.value : '';
-
-
-  }
+	const userData = await saveUser({
+		name: name.current ? name.current.value : '',
+		color: color.current  ? color.current.value : '',
+	});
+  };
 
 	return (
 		<form className={styles['new-user']} onSubmit={handleSubmit}>
@@ -36,8 +31,8 @@ export const NewUser: FC = () => {
 				<input ref={name} id="user-name" type="text" />
 			</div>
 			<select ref={color} className={styles.select}>
-				{colorOptions.map(option => (
-					<option value={option} key={option}>{option}</option>
+				{(Object.keys(UserColors) as Array<keyof typeof UserColors>).map(option => (
+					<option value={UserColors[option]} key={UserColors[option]}>{option}</option>
 				))}
 			</select>
 			<button type="submit">Add new user</button>
