@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import react, { FC } from 'react';
+import { FC } from 'react';
 
 /**
  * Internal dependencies
@@ -9,7 +9,7 @@ import react, { FC } from 'react';
 import styles from './colorShape.module.scss';
 import { UserColors } from '../../types/user';
 
-interface ColorShape {
+export interface ColorShape {
 	color: UserColors;
 }
 export const ColorShape: FC<ColorShape> = ({color}) => {

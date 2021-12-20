@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 /**
  * Internal dependencies

@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 /**
  * Internal dependencies
