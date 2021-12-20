@@ -1,0 +1,20 @@
+.table {
+	width: 300px;
+	background-color: #ffffff;
+	border-collapse: collapse;
+	border-width: 2px;
+	border-color: #ffcc00;
+	border-style: solid;
+	color: #000000;
+
+	.data {
+		border-width: 2px;
+		border-color: #ffcc00;
+		border-style: solid;
+		padding: 3px;
+	}
+
+	.head {
+  		background-color: #ffcc00;
+	}
+}

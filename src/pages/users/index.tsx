@@ -7,7 +7,7 @@ import { NextPage } from "next";
  * Internal dependencies
  */
 import type { User } from '../../types';
-import { UsersTable } from '../../components';
+import { UsersTable, NewUser } from '../../components';
 
 interface UsersProps {
 	usersData: User[];
@@ -16,6 +16,7 @@ interface UsersProps {
 const Users: NextPage<UsersProps> = ({ usersData }) => {
 	return (
 		<main>
+			<NewUser />
 			<UsersTable usersData={usersData}/>
 		</main>
 	)
@@ -23,31 +24,12 @@ const Users: NextPage<UsersProps> = ({ usersData }) => {
 
 export const getServerSideProps = async () => {
 	try {
-		// const res = await fetch('');
-		const usersData: User[] = [
-			{
-				id: 1,
-				name: 'Jon Doe',
-				favoriteColor: 'red',
-				createdAt: 'Wed Feb 05 2020 11:18:21 GMT+0000 (Greenwich Mean Time)',
-			},
-			{
-				id: 2,
-				name: 'Jane Doe',
-				favoriteColor: 'green',
-				createdAt: 'Mon Dec 20 2021 11:18:21 GMT+0000 (Greenwich Mean Time)',
-			},
-			{
-				id: 3,
-				name: 'Jon XYZ',
-				favoriteColor: 'blue',
-				createdAt: 'Tue Dec 21 2021 11:18:21 GMT+0000 (Greenwich Mean Time)',
-			}
-		];
+		const res = await fetch(`${process.env.API_URL}/users`);
+		const data = await res.json();
 
 		return {
 			props: {
-				usersData,
+				usersData: data,
 			}
 		}
 	} catch(e) {
