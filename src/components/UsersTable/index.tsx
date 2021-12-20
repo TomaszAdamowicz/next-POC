@@ -9,6 +9,15 @@ import React, { FC } from 'react';
 import type { User } from '../../types';
 
 export const UsersTable: FC<{usersData: User[]}> = ({usersData}) => {
+	const tableData = usersData.map( user => (
+		<tr
+			key={user.name}
+		>
+			<td>{user.name}</td>
+			<td>{user.favoriteColor}</td>
+		</tr>
+	));
+
 	return (
 		<table>
 			<thead>
@@ -18,14 +27,7 @@ export const UsersTable: FC<{usersData: User[]}> = ({usersData}) => {
 				</tr>
 			</thead>
 			<tbody>
-				{usersData.map( user => (
-					<tr
-						key={user.name}
-					>
-						<td>{user.name}</td>
-						<td>{user.favoriteColor}</td>
-					</tr>
-				))}
+				{ tableData }
 			</tbody>
 		</table>
 	);
