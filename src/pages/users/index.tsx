@@ -3,12 +3,12 @@
  */
 import { NextPage } from "next";
 
-const Home: NextPage = () => {
+const Users: NextPage = () => {
 	return (
 		<main>
-
+			Users
 		</main>
 	)
 };
 
-export default Home;
+export default Users;
