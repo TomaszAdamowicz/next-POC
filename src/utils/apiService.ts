@@ -29,4 +29,23 @@ export const saveUser = async (data: {name: string, color: string}): Promise<{us
 
 		return {user: null};
 	}
+};
+
+export const getUsers = async () => {
+	try {
+		const res = await fetch(`${process.env.API_URL}/users`);
+		const data = await res.json();
+
+		return {
+			props: {
+				usersData: data,
+			}
+		}
+	} catch(e) {
+		console.log(e);
+
+		return {
+			notFound: true,
+		};
+	}
 }

@@ -9,6 +9,7 @@ import { NextPage, } from "next";
  */
 import type { User } from '../../types';
 import { UsersTable, NewUser } from '../../components';
+import { getUsers } from '../../utils/apiService';
 
 interface UsersProps {
 	usersData: User[];
@@ -30,23 +31,7 @@ const Users: NextPage<UsersProps> = ({ usersData }) => {
 };
 
 export const getServerSideProps = async () => {
-	try {
-		const res = await fetch(`${process.env.API_URL}/users`);
-		const data = await res.json();
-
-		return {
-			props: {
-				usersData: data,
-			}
-		}
-	} catch(e) {
-		console.log(e);
-
-		return {
-			notFound: true,
-		};
-	}
-
+	return await getUsers();
 }
 
 export default Users;
