@@ -5,7 +5,8 @@
 		"dev": "next dev -p 4200",
 		"build": "next build",
 		"start": "next start -p 4200",
-		"lint": "next lint"
+		"lint": "next lint",
+		"lint:fix": "next lint --fix"
 	},
 	"dependencies": {
 		"next": "12.0.7",

@@ -7,6 +7,7 @@ import { NextPage } from "next";
  * Internal dependencies
  */
 import type { User } from '../../types';
+import { UsersTable } from '../../components';
 
 interface UsersProps {
 	usersData: User[];
@@ -15,7 +16,7 @@ interface UsersProps {
 const Users: NextPage<UsersProps> = ({ usersData }) => {
 	return (
 		<main>
-			Users
+			<UsersTable usersData={usersData}/>
 		</main>
 	)
 };
