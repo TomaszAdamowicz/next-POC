@@ -3,11 +3,11 @@
  */
 import type { User } from '../types';
 
-export const saveUser = async (data: {name: string, color: string}): Promise<{user: User} | {}> => {
+export const saveUser = async (data: {name: string, color: string}): Promise<{user: User | null}> => {
 	const {name, color} = data;
 
 	if(!name && !color) {
-		return {};
+		return {user: null};
 	}
 
 	try {
@@ -27,6 +27,6 @@ export const saveUser = async (data: {name: string, color: string}): Promise<{us
 	} catch(e) {
 		console.log(e);
 
-		return {};
+		return {user: null};
 	}
 }

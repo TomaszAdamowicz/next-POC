@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React, { FC, useRef } from 'react';
+import React, { FC, useState } from 'react';
 
 /**
  * Internal dependencies
@@ -9,30 +9,58 @@ import React, { FC, useRef } from 'react';
 import { UserColors } from '../../types';
 import styles from './newUser.module.scss';
 import { saveUser } from '../../utils/apiService';
+import type { User } from '../../types/user';
 
-export const NewUser: FC = () => {
-	const name = useRef<HTMLInputElement>(null);
-	const color = useRef<HTMLSelectElement>(null);
+interface NewUserProps {
+	updateData: (userData: User) => void;
+}
+
+
+export const NewUser: FC<NewUserProps> = ({updateData}) => {
+	const [formState, setFormState] = useState({color: 'red', name: ''});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-	const userData = await saveUser({
-		name: name.current ? name.current.value : '',
-		color: color.current  ? color.current.value : '',
-	});
+	const { user } = await saveUser(formState);
+
+	if(user) {
+		updateData(user);
+	}
   };
 
 	return (
-		<form className={styles['new-user']} onSubmit={handleSubmit}>
+		<form
+			className={styles['new-user']}
+			onSubmit={handleSubmit}
+		>
 			<b>Add User</b>
 			<div>
-				<label htmlFor="user-name" className={styles['input-label']}>User Name</label>
-				<input ref={name} id="user-name" type="text" />
+				<label
+					htmlFor="user-name"
+					className={styles['input-label']}
+				>
+					User Name
+				</label>
+				<input
+					id="user-name"
+					type="text"
+					value={formState.name}
+					onChange={(e) => setFormState({...formState,  name: e?.target.value})}
+				/>
 			</div>
-			<select ref={color} className={styles.select}>
+			<select
+				className={styles.select}
+				value={formState.color}
+				onChange={(e) => setFormState({...formState,  color: e?.target.value})}
+			>
 				{(Object.keys(UserColors) as Array<keyof typeof UserColors>).map(option => (
-					<option value={UserColors[option]} key={UserColors[option]}>{option}</option>
+					<option
+						value={UserColors[option]}
+						key={UserColors[option]}
+					>
+						{option}
+					</option>
 				))}
 			</select>
 			<button type="submit">Add new user</button>

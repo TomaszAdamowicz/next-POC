@@ -1,7 +1,8 @@
 /**
  * External dependencies
  */
-import { NextPage } from "next";
+import { useState, useCallback } from 'react';
+import { NextPage, } from "next";
 
 /**
  * Internal dependencies
@@ -14,10 +15,16 @@ interface UsersProps {
 }
 
 const Users: NextPage<UsersProps> = ({ usersData }) => {
+	const [data, setData] = useState<User[]>(usersData);
+
+	const updateUsers = useCallback((newUser) => {
+		setData([...data, newUser]);
+	}, [data]);
+
 	return (
 		<main>
-			<NewUser />
-			<UsersTable usersData={usersData}/>
+			<NewUser updateData={updateUsers}/>
+			<UsersTable usersData={data}/>
 		</main>
 	)
 };
