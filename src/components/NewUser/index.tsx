@@ -19,15 +19,15 @@ interface NewUserProps {
 export const NewUser: FC<NewUserProps> = ({updateData}) => {
 	const [formState, setFormState] = useState({color: 'red', name: ''});
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
 
-	const { user } = await saveUser(formState);
+		const { user } = await saveUser(formState);
 
-	if(user) {
-		updateData(user);
-	}
-  };
+		if(user) {
+			updateData(user);
+		}
+	};
 
 	return (
 		<form

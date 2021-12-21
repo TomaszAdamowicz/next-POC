@@ -24,10 +24,10 @@ const Recent: NextPage<RecentProps> = ({recentUser}) => {
 };
 
 export const getServerSideProps = async () => {
-	const data = await getRecentUser();
+	const recentUserData = await getRecentUser();
 
-	if(data) {
-		return data;
+	if(recentUserData) {
+		return recentUserData;
 	}
 
 	return {
