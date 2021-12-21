@@ -8,6 +8,18 @@
 }
 
 .select {
-	margin: 20px 0;
+	margin: 10px 0 20px;
 	display: block;
+}
+
+.input {
+	position: relative;
+
+	input {
+		margin-top: 20px;
+	}
+
+	:global(.error-message) {
+		position: absolute;
+	}
 }
