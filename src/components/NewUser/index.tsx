@@ -25,7 +25,6 @@ export const NewUser: FC<NewUserProps> = ({updateData}) => {
 		if(formState.name) {
 			setInputError(false);
 		}
-
 	}, [formState.name]);
 
 	const handleSubmit = async (e: React.FormEvent) => {

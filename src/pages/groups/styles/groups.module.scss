@@ -1,0 +1,9 @@
+.groups {
+	display: flex;
+	justify-content: space-between;
+
+	:global(.group) {
+		width: 50%;
+		padding: 0 15px;
+	}
+}

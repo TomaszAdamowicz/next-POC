@@ -7,13 +7,9 @@ import { NextPage, } from "next";
 /**
  * Internal dependencies
  */
-import type { User } from '../../types';
+import type { User, UsersProps } from '../../types';
 import { UsersTable, NewUser } from '../../components';
 import { getUsers } from '../../utils/apiService';
-
-interface UsersProps {
-	usersData: User[];
-}
 
 const Users: NextPage<UsersProps> = ({ usersData }) => {
 	const [data, setData] = useState<User[]>(usersData);
