@@ -2,6 +2,7 @@
  * Internal dependencies
  */
 import type { User } from '../types';
+import {Group} from "../types";
 
 export const saveUser = async (data: {name: string, color: string}): Promise<{user: User | null}> => {
 	const {name, color} = data;
@@ -47,6 +48,79 @@ export const getUsers = async () => {
 		return {
 			notFound: true,
 		};
+	}
+};
+
+export const getGroups = async () => {
+	try {
+		const res = await fetch(`${process.env.API_URL}/groups`);
+		const data = await res.json();
+
+		return {
+			props: {
+				groupsData: data as Group[],
+			}
+		}
+	} catch(e) {
+		console.log(e);
+
+		return {
+			notFound: true,
+		};
+	}
+};
+
+export const addUserToGroup = async (data: {groupId: string, userId: string}): Promise<{user: User | null}> => {
+	const {groupId, userId} = data;
+
+	if(!groupId && !userId) {
+		return {user: null};
+	}
+
+	try {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/groups/${groupId}/addUser`,{
+			method: 'POST',
+			headers: new Headers({
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			}),
+			body: JSON.stringify({
+				id: userId,
+			})
+		});
+
+		return await res.json();
+	} catch(e) {
+		console.log(e);
+
+		return {user: null};
+	}
+};
+
+export const removeUserFromGroup = async (data: {groupId: string, userId: string}): Promise<{user: User | null}> => {
+	const {groupId, userId} = data;
+
+	if(!groupId && !userId) {
+		return {user: null};
+	}
+
+	try {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/groups/${groupId}/removeUser`,{
+			method: 'DELETE',
+			headers: new Headers({
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			}),
+			body: JSON.stringify({
+				id: userId,
+			})
+		});
+
+		return await res.json();
+	} catch(e) {
+		console.log(e);
+
+		return {user: null};
 	}
 };
 
