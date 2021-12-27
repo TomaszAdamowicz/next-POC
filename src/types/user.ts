@@ -1,3 +1,5 @@
+import {Group} from "./group";
+
 export enum UserColors {
 	Red = 'red',
 	Blue = 'blue',
@@ -18,10 +20,4 @@ export interface User {
 	name: string,
 	favoriteColor: UserColors,
 	createdAt: string,
-}
-
-export interface Group {
-	id: number,
-	name: string,
-	usersIds: string[]
 }

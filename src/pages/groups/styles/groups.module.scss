@@ -1,9 +1,30 @@
 .groups {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: row;
+}
 
-	:global(.group) {
-		width: 50%;
-		padding: 0 15px;
-	}
+.freeUsers {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 10px;
+}
+
+.moveButtons {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 10px;
+}
+
+.selectedGroup {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 10px;
+}
+
+.usersGroups {
+  display: flex;
+  flex-direction: column;
 }
